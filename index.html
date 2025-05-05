@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAML Translator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #0A1426 0%, #1A2A5A 80%, #1A2A5A 100%);
+            color: #FFFFFF;
+            font-family: 'Roboto', sans-serif;
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 990px;
+            margin: 0 auto;
+            padding: 2vh 1vw;
+            box-sizing: border-box;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            text-align: center;
+        }
+        h1 {
+            font-size: 5vw;
+            margin-bottom: 0.5vh;
+        }
+        h2 {
+            font-size: 3.5vw;
+            margin-top: 2vh;
+            margin-bottom: 1.5vh;
+        }
+        h3 {
+            font-size: 2.5vw;
+            margin-top: 1.5vh;
+            margin-bottom: 1vh;
+        }
+        p, li {
+            font-size: 1.8vw;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 1vh;
+        }
+        .title-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5vh;
+            border-radius: 1vw;
+            text-align: center;
+            margin-bottom: 2vh;
+        }
+        .language-table, .features-box, .requirements-box, .why-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1vw;
+            padding: 1.5vh;
+            margin: 1.5vh 0;
+        }
+        .language-table-content {
+            display: flex;
+            justify-content: center;
+            gap: 3vw;
+        }
+        .language-table-content div {
+            text-align: center;
+            width: 20vw;
+        }
+        .language-table-content div p:first-child {
+            font-weight: 700;
+            border-bottom: 1px solid #FFFFFF;
+            padding-bottom: 0.5vh;
+            margin-bottom: 0.8vh;
+        }
+        .language-table-content div p {
+            margin: 0.3vh 0;
+        }
+        .features-box ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5vh;
+            justify-content: center;
+        }
+        .features-box li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 90%;
+            margin-bottom: 1.5vh;
+            gap: 2vw;
+        }
+        .features-box li .feature-image-container {
+            transition: transform 0.3s ease;
+        }
+        .features-box li .feature-image-container:hover {
+            transform: scale(1.7);
+            z-index: 10;
+        }
+        .feature-text {
+            flex: 1;
+            text-align: center;
+            max-width: 45vw;
+            line-height: 1.8;
+        }
+        .feature-text strong {
+            display: block;
+        }
+        .feature-image-container {
+            width: 340px;
+            height: 340px;
+            background: #0A1426;
+            border-radius: 1vw;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-image {
+            width: 340px;
+            height: 340px;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: center;
+            z-index: 1;
+        }
+        .switch-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 2;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .switch-button:hover {
+            opacity: 1;
+        }
+        .requirements-box li, .why-box li {
+            margin-bottom: 1vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-section">
+            <h1>YAML Translator</h1>
+            <h2>Effortless Translation for Your YAML Files</h2>
+        </div>
+
+        <h3>Supported languages</h3>
+        <div class="language-table">
+            <div class="language-table-content">
+                <div>
+                    <p>From</p>
+                    <p>Every Language</p>
+                    <p>English</p>
+                    <p>Portuguese</p>
+                    <p>Spanish</p>
+                </div>
+                <div>
+                    <p>To</p>
+                    <p>English</p>
+                    <p>Every language</p>
+                    <p>English, Spanish</p>
+                    <p>English, Portuguese</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>🔑 Key Features</h3>
+        <div class="features-box">
+            <ul>
+                <li>
+                    <div class="feature-text">
+                        <strong>🌍 Multi-Language Support</strong><br>Translate between 46 different<br>languages—only download what<br>you need, when you need it.<br>Modular and efficient.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-1" class="feature-image" src="images/1.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>🔤 Accurate Translations</strong><br>Delivers high-quality translations<br>while keeping formatting,<br>placeholders, and special<br>characters intact.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-2" class="feature-image" src="images/2.png" alt="Feature Image">
+                        <button class="switch-button" onclick="switchImage('image-2')">🔄</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>🚫 Smart Exclusion System</strong><br>Automatically skips placeholders,<br>Minecraft terms, and anything in<br>your exclusion lists. Only the<br>important stuff gets translated.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-3" class="feature-image" src="images/3.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>📂 Batch Mode</strong><br>Drag & drop multiple YAML files<br>or whole folders. Fast translation<br>for big projects? Easy.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-4" class="feature-image" src="images/4.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>🧲 Pin-to-Top Window</strong><br>Option to keep the translator<br>window on top while you work.<br>No more alt-tabbing chaos.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-5" class="feature-image" src="images/5.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>🖱️ Drag and Drop Support</strong><br>Just drop your files into the app.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-6" class="feature-image" src="images/6.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>🖥️ Modern GUI</strong><br>Built with a clean and responsive<br>interface. Includes hover tooltips,<br>translation progress, and a<br>detailed log.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-7" class="feature-image" src="images/7.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>⚡ Performance Controls</strong><br>Limit CPU usage, tweak priority,<br>and adjust translation speed to<br>match your workflow and system.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-8" class="feature-image" src="images/8.png" alt="Feature Image">
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-text">
+                        <strong>🛡️ Error Handling + Logs</strong><br>Reliable error handling and<br>detailed logs keep you in the<br>loop—no surprises.
+                    </div>
+                    <div class="feature-image-container">
+                        <img id="image-9" class="feature-image" src="images/9.png" alt="Feature Image">
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <h3>🌟 Why YAML Translator?</h3>
+        <div class="why-box">
+            <ul>
+                <li><strong> ⏳ Save Time</strong><br> Automate YAML translations and skip the manual hassle.</li>
+                <li><strong> 🎨 Preserve Structure</strong><br> Keeps YAML formatting, color codes, and tags intact—no broken files.</li>
+                <li><strong> 🧠 No Tech Skills Needed</strong><br> User-friendly design makes translating simple and stress-free.</li>
+                <li><strong> 🎮 Perfect for Projects</strong><br> Great for game localization (like Minecraft mods), software internationalization, or anything YAML-related.</li>
+            </ul>
+        </div>
+
+        <h3>🖥️ System Requirements</h3>
+        <div class="requirements-box">
+            <ul>
+                <li><strong> 🪟 OS:</strong> Windows 10/11 (Windows-only)</li>
+                <li><strong> 🧠 RAM:</strong> 4GB min (8GB recommended)</li>
+                <li><strong> 💾 Disk Space:</strong> 700MB (app + selected languages only)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function switchImage(imageId) {
+            const image = document.getElementById(imageId);
+            const currentSrc = image.src.split('images/').pop();
+            image.src = currentSrc === '2.png' ? 'images/22.png' : 'images/2.png';
+        }
+    </script>
+</body>
+</html>
