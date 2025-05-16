@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages Panel</title>
+    <style>
+        /* Estilo para la tarjeta del paquete */
+        .panel.panel-default.item-wrapper {
+            border: none; /* Elimina el borde por defecto */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para hover */
+            margin-bottom: 20px; /* Espacio entre tarjetas */
+        }
+
+        /* Efecto hover para la tarjeta */
+        .panel.panel-default.item-wrapper:hover {
+            transform: translateY(-5px); /* Levanta la tarjeta */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+        }
+
+        /* Estilo para el contenedor panel-body */
+        .panel-body {
+            background-color: #f5f5f5; /* Gris claro para el fondo */
+            padding: 20px; /* Más espacio interno */
+            border-radius: 8px; /* Bordes redondeados coherentes */
+            text-align: center; /* Centra el contenido */
+        }
+
+        /* Estilo para la imagen dentro de panel-body */
+        .panel-body .img-responsive {
+            margin: 0 auto; /* Centra la imagen */
+            border-radius: 4px; /* Bordes redondeados */
+            max-height: 200px; /* Limita la altura */
+        }
+
+        /* Estilos para el contenedor del footer del ítem */
+        .item-footer .row {
+            display: flex;
+            flex-wrap: wrap; /* Permite apilar elementos en pantallas pequeñas */
+            align-items: center; /* Alinea verticalmente */
+            justify-content: space-between; /* Distribuye espacio */
+            gap: 10px; /* Espacio entre elementos */
+            padding: 10px 0; /* Espaciado vertical */
+        }
+
+        /* Estilo para el contenedor del texto (nombre y precio) */
+        .item-footer .col-md-6:first-child {
+            flex: 1; /* Ocupa el espacio disponible */
+            min-width: 100px; /* Evita compresión */
+            font-family: 'Arial', sans-serif; /* Tipografía clara */
+            font-size: 16px; /* Tamaño de fuente */
+            font-weight: bold; /* Negrita para el nombre */
+            color: #333; /* Color oscuro */
+        }
+
+        /* Estilo para el precio */
+        .item-footer .col-md-6:first-child br + * {
+            font-size: 14px; /* Tamaño más pequeño */
+            color: #555; /* Color más claro */
+        }
+
+        /* Estilo para el contenedor de botones */
+        .item-footer .col-md-6.text-right {
+            display: flex;
+            flex-wrap: wrap; /* Permite apilar botones */
+            justify-content: flex-end; /* Alinea a la derecha */
+            gap: 12px; /* Espacio entre botones */
+            align-items: center; /* Alinea verticalmente */
+        }
+
+        /* Estilo para el botón Detalles */
+        .item-footer .btn-more-info {
+            padding: 6px 12px; /* Padding para clic */
+            font-size: 13px; /* Tamaño de fuente */
+            font-family: 'Arial', sans-serif; /* Tipografía */
+            font-weight: 500; /* Peso medio */
+            color: #fff; /* Color del texto */
+            background-color: #337ab7; /* Azul */
+            border: 1px solid #2e6da4; /* Borde azul */
+            border-radius: 4px; /* Bordes redondeados */
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Transiciones */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+        }
+
+        /* Efecto hover para Detalles */
+        .item-footer .btn-more-info:hover {
+            background-color: #286090; /* Azul más oscuro */
+            transform: scale(1.05); /* Escala */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+
+        /* Estilo para el botón Buy Now */
+        .item-footer .btn-buy-now {
+            padding: 6px 16px; /* Mayor padding */
+            font-size: 13px; /* Tamaño de fuente */
+            font-family: 'Arial', sans-serif; /* Tipografía */
+            font-weight: 500; /* Peso medio */
+            color: #fff; /* Color del texto */
+            background-color: #28a745; /* Verde */
+            border: 1px solid #218838; /* Borde verde */
+            border-radius: 4px; /* Bordes redondeados */
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Transiciones */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra */
+            text-decoration: none; /* Sin subrayado */
+        }
+
+        /* Efecto hover para Buy Now */
+        .item-footer .btn-buy-now:hover {
+            background-color: #218838; /* Verde oscuro */
+            transform: scale(1.1); /* Escala mayor */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Sombra intensa */
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 576px) {
+            .panel.panel-default.item-wrapper {
+                margin: 0 auto; /* Centra tarjetas */
+                max-width: 90%; /* Limita ancho */
+            }
+            .item-footer .col-md-6.text-right {
+                justify-content: flex-start; /* Alinea a la izquierda */
+                width: 100%; /* Ocupa todo el ancho */
+            }
+            .item-footer .btn-more-info,
+            .item-footer .btn-buy-now {
+                width: 100%; /* Botones ocupan ancho completo */
+                margin-top: 8px; /* Espacio vertical */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Knight Item -->
+            <div class="col-md-4">
+                <div class="panel panel-default item-wrapper">
+                    <div class="panel-body">
+                        <img class="img-responsive" src="./TWO LIFE HARDCORE _ Ranks_files/zqsfwsxs3fgihfjsrej6.png" alt="Knight"><br>
+                        <div class="item-footer">
+                            <div class="row">
+                                <div class="col-md-6"><b>Knight</b><br>19.99 USD</div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn-more-info" data-toggle="modal" data-target="#package1401321">Detalles</button>
+                                    <a href="https://twolife.craftingstore.net/package/1401321" class="btn-buy-now">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Lord Item -->
+            <div class="col-md-4">
+                <div class="panel panel-default item-wrapper">
+                    <div class="panel-body">
+                        <img class="img-responsive" src="./TWO LIFE HARDCORE _ Ranks_files/bhy4alppbz3mxpfvbelw.png" alt="Lord"><br>
+                        <div class="item-footer">
+                            <div class="row">
+                                <div class="col-md-6"><b>Lord</b><br>35.99 USD</div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn-more-info" data-toggle="modal" data-target="#package1401513">Detalles</button>
+                                    <a href="https://twolife.craftingstore.net/package/1401513" class="btn-buy-now">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Emperor Item -->
+            <div class="col-md-4">
+                <div class="panel panel-default item-wrapper">
+                    <div class="panel-body">
+                        <img class="img-responsive" src="./TWO LIFE HARDCORE _ Ranks_files/nmcbpxgfdplxlf5kldwf.png" alt="Emperor"><br>
+                        <div class="item-footer">
+                            <div class="row">
+                                <div class="col-md-6"><b>Emperor</b><br>99.99 USD</div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn-more-info" data-toggle="modal" data-target="#package1401517">Detalles</button>
+                                    <a href="https://twolife.craftingstore.net/package/1401517" class="btn-buy-now">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
