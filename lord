@@ -1,0 +1,470 @@
+<style>
+    /* General Page Enhancements */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f6f8; /* Light background for the page */
+        color: #333; /* Default text color */
+    }
+
+    /* Main wrapper for content if you want to center it */
+    .content-wrapper {
+        max-width: 900px; /* Adjust as needed */
+        margin: 0 auto;
+        padding: 10px; /* Add some padding to the wrapper itself */
+    }
+
+    /* Main Title */
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2.8em; /* Slightly larger */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); /* Softer shadow */
+        margin-top: 20px; /* Added margin top */
+        margin-bottom: 50px; /* More space below title */
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 svg {
+        fill: #2c3e50; /* Or use currentColor if path fill is set to currentColor */
+        margin: 0 15px; /* Space around SVGs */
+        width: 30px; /* Ensure SVGs in H1 are sized appropriately */
+        height: 30px;
+    }
+
+    /* Section Styling */
+    section[data-tag] {
+        margin-bottom: 40px; /* Space between sections */
+        padding: 25px; /* Increased padding */
+        background-color: #ffffff; /* Sections on a white card */
+        border-radius: 12px; /* Rounded corners for sections */
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); /* Softer, more diffused shadow for sections */
+    }
+
+    section[data-tag] h2 {
+        color: #2c3e50;
+        font-size: 2em;
+        border-bottom: 2px solid #3b536b; /* Accent border */
+        padding-bottom: 12px;
+        margin-top: 0;
+        margin-bottom: 30px; /* More space after h2 */
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+    }
+
+    section[data-tag] ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* General List Item Styling (excluding kit enchantments) */
+    section[data-tag] li:not(ul.enchantments li) {
+        background-color: #ffffff;
+        border: 1px solid #dfe6e9; /* Lighter border */
+        border-left: 5px solid #2c3e50; /* Accent border on the left */
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-bottom: 15px; /* Consistent margin */
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: transform 0.25s ease-out, background-color 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06); /* Softer shadow */
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover {
+        background-color: #3b536b;
+        color: #ffffff;
+        border-color: #3b536b; /* Match background */
+        border-left-color: #e74c3c; /* Accent color change on hover */
+        transform: translateY(-3px) scale(1.015); /* Lift and slight scale */
+        box-shadow: 0 7px 14px rgba(44, 62, 80, 0.25); /* Enhanced shadow */
+    }
+
+    section[data-tag] li strong { /* Text within the <strong> tag */
+        color: #2c3e50;
+        font-weight: 600; /* Semibold */
+    }
+    section[data-tag] li .perk-description { /* Class for the text next to strong */
+        color: #555; /* Normal text color for descriptions if any */
+        margin-left: 5px; /* Space between strong and description */
+    }
+
+
+    section[data-tag] li:not(ul.enchantments li):hover strong,
+    section[data-tag] li:not(ul.enchantments li):hover .perk-description, /* Ensure desc text also changes color */
+    section[data-tag] li:not(ul.enchantments li):hover { /* Ensures all text in li changes */
+        color: #ffffff;
+    }
+    section[data-tag] li:not(ul.enchantments li):hover .perk-description {
+        color: #f0f0f0; /* Lighter color for description on hover for subtlety */
+    }
+
+
+    /* Icon Styling */
+    section[data-tag] .icon {
+        display: inline-flex; /* Use flex for centering icon if needed */
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        margin-right: 12px; /* Spacing between icon and text */
+    }
+
+    section[data-tag] .icon svg {
+        width: 100%;
+        height: 100%;
+        fill: #2c3e50; /* Default icon color */
+        transition: fill 0.25s ease-out;
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover .icon svg {
+        fill: #ffffff; /* Icon color on li hover */
+    }
+    section[data-tag] h2 .icon svg { /* Icon inside an H2 tag */
+        fill: #2c3e50; /* Matches H2 text color */
+    }
+
+    /* Commands Section Grid */
+    section[data-tag="commands"] ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive columns */
+        gap: 20px; /* Gap between command items */
+    }
+
+    section[data-tag="commands"] li {
+        justify-content: center; /* Center content horizontally in grid item */
+        text-align: center; /* Center text */
+        padding: 25px 20px; /* More padding for command items */
+    }
+
+    /* Style for the div containing the main rank image */
+    .main-image-container {
+        text-align: center;
+        margin-bottom: 40px; /* Space below the image */
+    }
+
+    .main-image-container figure {
+        max-width: 275px;
+        display: inline-block; /* Allows text-align center to work */
+        background-color: #fff;
+        padding: 12px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .main-image-container figure img {
+        display: block; /* Removes extra space below image */
+        max-width: 100%;
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Rounded corners for the image itself */
+    }
+
+    /* Kit Section Specifics (applies to Knight, Lord, or any kit) */
+    section[data-tag="kit"] > figure { /* The main <figure> wrapper inside kit section */
+        padding: 25px;
+        background-color: #fdfdfd;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        margin-top: 10px;
+    }
+
+    section[data-tag="kit"] > figure > figure { /* The nested <figure> for the kit image */
+        max-width: 280px;
+        margin: 0 auto 25px auto; /* Center image figure and add space below */
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    section[data-tag="kit"] > figure > figure > img { /* The kit image itself */
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    /* Optional: For the H2 that was empty in Knight's kit, if used */
+    section[data-tag="kit"] > figure > h2 {
+        font-size: 1em;
+        color: #888;
+        text-align: center;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        font-weight: normal;
+    }
+    section[data-tag="kit"] > figure > h2:empty { /* Hide if empty */
+        display: none;
+    }
+
+    /* Styling for list of armor parts if present (like in Knight kit) */
+    section[data-tag="kit"] > figure > ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    section[data-tag="kit"] > figure > ul > h2 { /* e.g., "Helmet", "Chestplate" titles */
+        color: #16a085;
+        font-size: 1.5em;
+        border-bottom: 1px dashed #bdc3c7;
+        padding-bottom: 8px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    section[data-tag="kit"] > figure > ul > h2:first-child {
+        margin-top: 0;
+    }
+    section[data-tag="kit"] > figure > ul > h2 strong {
+        font-weight: inherit;
+    }
+
+    section[data-tag="kit"] > figure > ul > li { /* Container for an armor piece's enchantments */
+        background-color: #ffffff;
+        border: 1px solid #e7e7e7;
+        border-left: 5px solid #3498db;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 18px;
+        font-size: 1.1em;
+        display: block;
+        transition: transform 0.2s ease-out, background-color 0.2s ease-out, box-shadow 0.2s ease-out, border-left-color 0.2s ease-out;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    section[data-tag="kit"] > figure > ul > li:hover {
+        background-color: #f7f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+        border-left-color: #2ecc71;
+    }
+
+    /* Enchantments list styling */
+    section[data-tag="kit"] > figure > ul > li ul.enchantments {
+        list-style-type: disc;
+        padding-left: 25px;
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    section[data-tag="kit"] > figure > ul > li ul.enchantments li {
+        background-color: transparent !important;
+        border: none !important;
+        border-left: none !important;
+        padding: 6px 0 !important; /* Added !important to ensure override if needed */
+        margin-bottom: 3px !important;
+        font-size: 1em !important;
+        display: list-item !important;
+        box-shadow: none !important;
+        color: #4a4a4a !important;
+        transition: color 0.2s ease-out;
+    }
+
+    section[data-tag="kit"] > figure > ul > li ul.enchantments li:hover {
+        background-color: transparent !important;
+        transform: none !important;
+        box-shadow: none !important;
+        color: #16a085 !important;
+    }
+</style>
+<div class="content-wrapper"> <h1>
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 2.5l2.5 5.5h5.5l-4.5 3.5 1.5 5.5-5-4-5 4 1.5-5.5-4.5-3.5h5.5z" fill="currentColor"></path>
+        </svg>
+        Lord Rank Perks
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 2.5l2.5 5.5h5.5l-4.5 3.5 1.5 5.5-5-4-5 4 1.5-5.5-4.5-3.5h5.5z" fill="currentColor"></path>
+        </svg>
+    </h1>
+    <div class="main-image-container">
+        <figure>
+            <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/mfgwgh6mcigoe42nauua.png" alt="Lord Rank Image" data-image="97n70vy3somv">
+        </figure>
+    </div>
+    <section data-tag="visual">
+        <h2>
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 21h18l-9-9-9 9zm6-12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+                </svg>
+            </span>
+            Visual Customization
+        </h2>
+        <ul>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l2.5 5.5h5.5l-4.5 3.5 1.5 5.5-5-4-5 4 1.5-5.5-4.5-3.5h5.5z"></path>
+                    </svg>
+                </span>
+                <strong>Colored Name Tag</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"></path>
+                    </svg>
+                </span>
+                <strong>Custom Chat Prefix</strong> <span class="perk-description">([Lord])</span>
+            </li>
+        </ul>
+    </section>
+    <section data-tag="interaction">
+        <h2>
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0-10-10zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                </svg>
+            </span>
+            Server Interaction
+        </h2>
+        <ul>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5-5 5 5m-5 10v-10"></path>
+                    </svg>
+                </span>
+                <strong>Personalized Join Message</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l-2 7H2l6 5-2 7 6-4 6 4-2-7 6-5h-8l-2-7z"></path>
+                    </svg>
+                </span>
+                <strong>Priority Queue Access</strong>
+            </li>
+        </ul>
+    </section>
+    <section data-tag="commands">
+        <h2>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M4.4,6.4L2.8,5L8,0L13.2,5L11.6,6.4L8,2.8L4.4,6.4M21.2,19L16,24L10.8,19L12.4,17.6L16,21.2L19.6,17.6L21.2,19M13.2,5L8,0L2.8,5L4.4,6.4L8,2.8L11.6,6.4L13.2,5M8,2.8L4.4,6.4L2.8,5L8,0M16,21.2L19.6,17.6L21.2,19L16,24M12.4,17.6L10.8,19L16,24L21.2,19M5,10.8V13.2H19V10.8H5Z"></path>
+                </svg>
+            </span>
+            Exclusive Commands
+        </h2>
+        <ul>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M12.67,18.17C12.67,18.17,12.67,18.17,12.67,18.17L10.67,17.5L10,15.42L12.92,14.17L14.17,11.25L12.08,10.58L11.42,8.58C11.42,8.58,11.42,8.58,11.42,8.58C11.42,8.58,11.42,8.58,11.42,8.58L10.08,4.92L10.75,4.25L12.67,6.17L14.58,4.25L15.25,4.92L13.92,8.58H13.92L13.25,10.58L11.42,11.17L10.83,12.58L12.25,13.25L13.08,12.83L14.17,15.08L13.42,17.08L12.67,18.17M19.5,12L22,10.5L19.5,9L18,6.5L16.5,9L14,10.5L16.5,12L18,14.5L19.5,12M4.5,12L7,10.5L4.5,9L3,6.5L1.5,9L0,10.5L1.5,12L3,14.5L4.5,12Z"></path>
+                    </svg>
+                </span>
+                <strong>/fly</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M19.5,10.5C19.5,9.36 19.13,8.29 18.5,7.38L17.62,9H6.38L5.5,7.38C4.87,8.29 4.5,9.36 4.5,10.5V12H19.5V10.5M12,2C9.24,2 7,4.24 7,7V8H17V7C17,4.24 14.76,2 12,2M4.5,13V17C4.5,18.11 5.39,19 6.5,19H17.5C18.61,19 19.5,18.11 19.5,17V13H4.5Z"></path>
+                    </svg>
+                </span>
+                <strong>/hat</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M12,2C12,2 12,2 12,2C6.5,2 2,6.5 2,12C2,17.5 6.5,22 12,22C17.5,22 22,17.5 22,12C22,6.5 17.5,2 12,2M12,4A8,8 0 0,1 20,12H18A6,6 0 0,0 12,6V4M12,7A5,5 0 0,1 17,12H15A3,3 0 0,0 12,9V7M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z"></path>
+                    </svg>
+                </span>
+                <strong>/near</strong>
+            </li>
+            <li>
+                <span class="icon">
+                     <svg viewBox="0 0 24 24"> <path d="M4,2H20A2,2 0 0,1 22,4V10A2,2 0 0,1 20,12H4A2,2 0 0,1 2,10V4A2,2 0 0,1 4,2M6,6V8H18V6H6M11,14H13V16H15V10H9V16H11V14M4,14H8V18H4V14M16,14H20V18H16V14M5,20H19V22H5V20Z"></path>
+                    </svg>
+                </span>
+                <strong>/enderchest</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M8,10H16V12H8V10M8,14H16V16H8V14M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M10,2H14V4H10V2M4,22H20V24H4V22Z"></path>
+                    </svg>
+                </span>
+                <strong>/vault (x2)</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M16,7.5V10.5H9V7.5H16M17.5,12H7.5C6.67,12 6,12.67 6,13.5V13.5C6,14.33 6.67,15 7.5,15H17.5C18.33,15 19,14.33 19,13.5V13.5C19,12.67 18.33,12 17.5,12M22,6V19C22,20.11 21.1,21 20,21H5C3.89,21 3,20.11 3,19V6C3,4.89 3.89,4 5,4H6V2H8V4H17V2H19V4H20C21.1,4 22,4.89 22,6Z"></path>
+                    </svg>
+                </span>
+                <strong>/feed</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5M12,17C9.24,17 7,14.76 7,12C7,9.24 9.24,7 12,7C14.76,7 17,9.24 17,12C17,14.76 14.76,17 12,17M12,9C10.34,9 9,10.34 9,12C9,13.66 10.34,15 12,15C13.66,15 15,13.66 15,12C15,10.34 13.66,9 12,9Z"></path>
+                    </svg>
+                </span>
+                <strong>/invsee</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z"></path>
+                    </svg>
+                </span>
+                <strong>/ptime</strong>
+            </li>
+            <li>
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"> <path d="M3,6H21V4H3V6M3,11H21V9H3V11M3,16H21V14H3V16M3,21H21V19H3V21Z"></path>
+                    </svg>
+                </span>
+                <strong>/recipe</strong>
+            </li>
+        </ul>
+    </section>
+    <section data-tag="kit">
+        <h2>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M20,2H4A2,2 0 0,0 2,4V8A2,2 0 0,0 4,10H5V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V10H20A2,2 0 0,0 22,8V4A2,2 0 0,0 20,2M17,20H7V10H17V20M12,11A2.5,2.5 0 0,1 9.5,13.5A2.5,2.5 0 0,1 7,11V7H9.5V8.5H14.5V7H17V11A2.5,2.5 0 0,1 14.5,13.5A2.5,2.5 0 0,1 12,11M9.5,4H14.5L15,6H9L9.5,4Z"></path>
+                </svg>
+            </span>
+            Lord Kit
+        </h2>
+        <figure><figure> <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/vzlmdbtv1mhzrn9w9xod.png" alt="Lord Kit Image" data-image="krgyinlrlgzq">
+            </figure></figure>
+<figure><h2></h2> <ul>
+            <h2><strong>Helmet<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection IV</li>
+                    <li>Unbreaking IV</li>
+                    <li>Speed +4%</li>
+                    <li>Iron-Man Look</li>
+                </ul>
+            </li>
+            <h2><strong>Chestplate<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection IV</li>
+                    <li>Unbreaking IV</li>
+                </ul>
+            </li>
+            <h2><strong>Leggings<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection IV</li>
+                    <li>Unbreaking IV</li>
+                </ul>
+            </li>
+            <h2><strong>Boots<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection IV</li>
+                    <li>Unbreaking IV</li>
+                </ul>
+            </li>
+        </ul></figure>
+    </section>
+</div>
