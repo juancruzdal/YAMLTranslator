@@ -1,0 +1,474 @@
+<style>
+    /* General Page Enhancements */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f6f8; /* Light background for the page */
+        color: #333; /* Default text color */
+    }
+
+    /* Main wrapper for content if you want to center it */
+    .content-wrapper {
+        max-width: 900px; /* Adjust as needed */
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    /* Main Title */
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2.8em; /* Slightly larger */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); /* Softer shadow */
+        margin-top: 20px;
+        margin-bottom: 50px; /* More space below title */
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 svg {
+        fill: #2c3e50;
+        margin: 0 15px; /* Space around SVGs */
+        width: 30px; /* Ensure SVGs in H1 are sized appropriately */
+        height: 30px;
+    }
+
+    /* Section Styling */
+    section[data-tag] {
+        margin-bottom: 40px; /* Space between sections */
+        padding: 25px; /* Increased padding */
+        background-color: #ffffff; /* Sections on a white card */
+        border-radius: 12px; /* Rounded corners for sections */
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); /* Softer, more diffused shadow for sections */
+    }
+
+    section[data-tag] h2 {
+        color: #2c3e50;
+        font-size: 2em;
+        border-bottom: 2px solid #3b536b; /* Accent border */
+        padding-bottom: 12px;
+        margin-top: 0;
+        margin-bottom: 30px; /* More space after h2 */
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+    }
+
+    section[data-tag] ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* General List Item Styling */
+    section[data-tag] li:not(ul.enchantments li) { /* Exclude enchantment list items from this general style */
+        background-color: #ffffff;
+        border: 1px solid #dfe6e9; /* Lighter border */
+        border-left: 5px solid #2c3e50; /* Accent border on the left */
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-bottom: 15px; /* Consistent margin */
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: transform 0.25s ease-out, background-color 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06); /* Softer shadow */
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover {
+        background-color: #3b536b;
+        color: #ffffff;
+        border-color: #3b536b; /* Match background */
+        border-left-color: #e74c3c; /* Accent color change on hover */
+        transform: translateY(-3px) scale(1.015); /* Lift and slight scale */
+        box-shadow: 0 7px 14px rgba(44, 62, 80, 0.25); /* Enhanced shadow */
+    }
+
+    section[data-tag] li strong {
+        color: #2c3e50;
+        font-weight: 600; /* Semibold */
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover strong,
+    section[data-tag] li:not(ul.enchantments li):hover {
+        color: #ffffff;
+    }
+
+    /* Icon Styling */
+    section[data-tag] .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        margin-right: 12px;
+    }
+
+    section[data-tag] .icon svg {
+        width: 100%;
+        height: 100%;
+        fill: #2c3e50;
+        transition: fill 0.25s ease-out;
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover .icon svg {
+        fill: #ffffff;
+    }
+    section[data-tag] h2 .icon svg {
+        fill: #2c3e50;
+    }
+
+    /* Commands Section Grid */
+    section[data-tag="commands"] ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    section[data-tag="commands"] li {
+        justify-content: center;
+        text-align: center;
+        padding: 25px 20px; /* More padding */
+    }
+
+    /* Style for the div containing the main image (Knight Rank Perks image) */
+    .main-image-container { /* Give the div a class for easier targeting */
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .main-image-container figure {
+        max-width: 275px; /* Slightly more than original */
+        display: inline-block;
+        background-color: #fff;
+        padding: 12px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .main-image-container figure img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Knight Kit Section Specifics */
+    /* The main figure container in the kit section (assuming typo <figure"> is <figure>) */
+    section[data-tag="kit"] > figure {
+        padding: 25px;
+        background-color: #fdfdfd; /* Very light grey for this container */
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        margin-top: 10px; /* Space from "Knight Kit" H2 */
+    }
+
+    /* The nested figure that directly holds the kit image */
+    section[data-tag="kit"] > figure > figure {
+        max-width: 280px;
+        margin: 0 auto 25px auto; /* Center and space below */
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    section[data-tag="kit"] > figure > figure > img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    /* The empty H2 inside the main figure of kit section */
+    section[data-tag="kit"] > figure > h2 {
+        font-size: 1em; /* In case it's used */
+        color: #888;
+        text-align: center;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        font-weight: normal;
+    }
+    section[data-tag="kit"] > figure > h2:empty { /* Hide if truly empty */
+        display: none;
+    }
+
+
+    /* The UL containing kit parts, now inside the main figure */
+    section[data-tag="kit"] > figure > ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* H2s like "Helmet", "Chestplate" which are children of the ul */
+    section[data-tag="kit"] > figure > ul > h2 {
+        color: #16a085; /* Distinct color for these sub-titles */
+        font-size: 1.5em;
+        border-bottom: 1px dashed #bdc3c7;
+        padding-bottom: 8px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    section[data-tag="kit"] > figure > ul > h2:first-child {
+        margin-top: 0;
+    }
+    section[data-tag="kit"] > figure > ul > h2 strong {
+        font-weight: inherit;
+    }
+
+    /* List items for individual armor pieces (Helmet, Chestplate, etc.) */
+    section[data-tag="kit"] > figure > ul > li {
+        background-color: #ffffff;
+        border: 1px solid #e7e7e7;
+        border-left: 5px solid #3498db; /* Blue accent for kit items */
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 18px;
+        font-size: 1.1em;
+        display: block;
+        transition: transform 0.2s ease-out, background-color 0.2s ease-out, box-shadow 0.2s ease-out, border-left-color 0.2s ease-out;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    section[data-tag="kit"] > figure > ul > li:hover {
+        background-color: #f7f9fa; /* Lighter hover */
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+        border-left-color: #2ecc71; /* Green accent on hover */
+    }
+
+    /* Enchantments list styling */
+    section[data-tag="kit"] > figure > ul > li ul.enchantments {
+        list-style-type: disc; /* Standard disc for enchantments */
+        padding-left: 25px;
+        margin-top: 12px; /* Space from any content above within the li */
+        margin-bottom: 0; /* No bottom margin for the ul itself */
+    }
+
+    section[data-tag="kit"] > figure > ul > li ul.enchantments li {
+        background-color: transparent !important; /* Ensure no override */
+        border: none !important; /* Ensure no override */
+        border-left: none !important; /* Ensure no override */
+        padding: 6px 0;
+        margin-bottom: 3px; /* Small gap between enchantments */
+        font-size: 1em; /* Relative to parent li */
+        display: list-item !important; /* Ensure it's a list item */
+        box-shadow: none !important; /* Ensure no override */
+        color: #4a4a4a; /* Good contrast for enchantment text */
+        transition: color 0.2s ease-out;
+    }
+    /* Remove hover effects for individual enchantment lines if they were inherited */
+    section[data-tag="kit"] > figure > ul > li ul.enchantments li:hover {
+        background-color: transparent !important;
+        transform: none !important;
+        box-shadow: none !important;
+        color: #16a085; /* Highlight text color on hover */
+    }
+/* Estilos modificados para el contenedor del footer del ítem */
+.item-footer .row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones se apilen en pantallas pequeñas */
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: space-between; /* Distribuye el espacio entre el texto y los botones */
+    gap: 10px; /* Espacio entre elementos */
+}
+
+/* Estilo para el contenedor del texto (nombre y precio) */
+.item-footer .col-md-6:first-child {
+    flex: 1; /* Ocupa el espacio disponible */
+    min-width: 100px; /* Evita que el texto se comprima demasiado */
+}
+
+/* Estilo para el contenedor de los botones */
+.item-footer .col-md-6.text-right {
+    display: flex;
+    flex-wrap: wrap; /* Permite apilar botones en pantallas pequeñas */
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 8px; /* Espacio entre botones */
+}
+
+/* Estilo para el botón Buy Now */
+.item-footer .btn-buy-now {
+    margin-top: 8px; /* Espacio superior para separación en pantallas pequeñas */
+}
+
+/* Asegura que los botones se apilen verticalmente en pantallas pequeñas */
+@media (max-width: 576px) {
+    .item-footer .col-md-6.text-right {
+        justify-content: flex-start; /* Alinea botones a la izquierda en móviles */
+        width: 100%; /* Ocupa todo el ancho */
+    }
+    .item-footer .btn-buy-now {
+        width: 100%; /* Botón ocupa todo el ancho en móviles */
+    }
+    .item-footer .btn-primary.btn-xs {
+        width: 100%; /* Botón More Info también ocupa todo el ancho */
+    }
+}
+</style>
+<h1>
+    <svg width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
+        <path d="M12 2.5l2.5 5.5h5.5l-4.5 3.5 1.5 5.5-5-4-5 4 1.5-5.5-4.5-3.5h5.5z" fill="currentColor"></path> </svg>
+    Knight Rank Perks
+    <svg width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 10px;">
+        <path d="M12 2.5l2.5 5.5h5.5l-4.5 3.5 1.5 5.5-5-4-5 4 1.5-5.5-4.5-3.5h5.5z" fill="currentColor"></path> </svg>
+</h1>
+<div class="main-image-container" style="text-align: center;">
+    <figure style="max-width: 265px; display: inline-block;">
+        <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/dxzqom2iryce0a22hyux.png" width="265" height="229" style="width: 100%; height: auto; display: block;" data-image="jl144jrizymz"> </figure>
+</div>
+<section data-tag="visual">
+    <h2>
+        <span class="icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M3 21h18l-9-9-9 9zm6-12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+            </svg>
+        </span>
+        Visual Customization
+    </h2>
+    <ul>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2l2.5 5.5h5.5l-4.5 3.5 1.5 5.5-5-4-5 4 1.5-5.5-4.5-3.5h5.5z"></path>
+                </svg>
+            </span>
+            <strong>Colored Name Tag</strong>
+        </li>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 4h16v4H4zm0 6h16v4H4zm0 6h16v4H4z"></path>
+                </svg>
+            </span>
+            <strong>Custom Chat Prefix</strong>
+        </li>
+    </ul>
+</section>
+<section data-tag="interaction">
+    <h2>
+        <span class="icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0-10-10zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+            </svg>
+        </span>
+        Server Interaction
+    </h2>
+    <ul>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5-5 5 5m-5 10v-10"></path>
+                </svg>
+            </span>
+            <strong>Personalized Join Message</strong>
+        </li>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2l-2 7H2l6 5-2 7 6-4 6 4-2-7 6-5h-8l-2-7z"></path>
+                </svg>
+            </span>
+            <strong>Priority Queue Access</strong>
+        </li>
+    </ul>
+</section>
+<section data-tag="commands">
+    <h2>
+        <span class="icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 7h10v10H7z"></path> </svg>
+        </span>
+        Exclusive Commands
+    </h2>
+    <ul>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M12.67,18.17C12.67,18.17,12.67,18.17,12.67,18.17L10.67,17.5L10,15.42L12.92,14.17L14.17,11.25L12.08,10.58L11.42,8.58C11.42,8.58,11.42,8.58,11.42,8.58C11.42,8.58,11.42,8.58,11.42,8.58L10.08,4.92L10.75,4.25L12.67,6.17L14.58,4.25L15.25,4.92L13.92,8.58H13.92L13.25,10.58L11.42,11.17L10.83,12.58L12.25,13.25L13.08,12.83L14.17,15.08L13.42,17.08L12.67,18.17M19.5,12L22,10.5L19.5,9L18,6.5L16.5,9L14,10.5L16.5,12L18,14.5L19.5,12M4.5,12L7,10.5L4.5,9L3,6.5L1.5,9L0,10.5L1.5,12L3,14.5L4.5,12Z"></path>
+                </svg>
+            </span>
+            <strong>/fly</strong>
+        </li>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M19.5,10.5C19.5,9.36 19.13,8.29 18.5,7.38L17.62,9H6.38L5.5,7.38C4.87,8.29 4.5,9.36 4.5,10.5V12H19.5V10.5M12,2C9.24,2 7,4.24 7,7V8H17V7C17,4.24 14.76,2 12,2M4.5,13V17C4.5,18.11 5.39,19 6.5,19H17.5C18.61,19 19.5,18.11 19.5,17V13H4.5Z"></path>
+                </svg>
+            </span>
+            <strong>/hat</strong>
+        </li>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M12,2C12,2 12,2 12,2C6.5,2 2,6.5 2,12C2,17.5 6.5,22 12,22C17.5,22 22,17.5 22,12C22,6.5 17.5,2 12,2M12,4A8,8 0 0,1 20,12H18A6,6 0 0,0 12,6V4M12,7A5,5 0 0,1 17,12H15A3,3 0 0,0 12,9V7M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10Z"></path>
+                </svg>
+            </span>
+            <strong>/near</strong>
+        </li>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M4,2H20A2,2 0 0,1 22,4V10A2,2 0 0,1 20,12H4A2,2 0 0,1 2,10V4A2,2 0 0,1 4,2M6,6V8H18V6H6M11,14H13V16H15V10H9V16H11V14M4,14H8V18H4V14M16,14H20V18H16V14M5,20H19V22H5V20Z"></path>
+                </svg>
+            </span>
+            <strong>/enderchest</strong>
+        </li>
+        <li>
+            <span class="icon">
+                <svg viewBox="0 0 24 24"> <path d="M8,10H16V12H8V10M8,14H16V16H8V14M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M10,2H14V4H10V2M4,22H20V24H4V22Z"></path>
+                </svg>
+            </span>
+            <strong>/vault (x2)</strong>
+        </li>
+    </ul>
+</section>
+<section data-tag="kit">
+    <h2>
+        <span class="icon">
+            <svg viewBox="0 0 24 24"> <path d="M20,2H4A2,2 0 0,0 2,4V8A2,2 0 0,0 4,10H5V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V10H20A2,2 0 0,0 22,8V4A2,2 0 0,0 20,2M17,20H7V10H17V20M12,11A2.5,2.5 0 0,1 9.5,13.5A2.5,2.5 0 0,1 7,11V7H9.5V8.5H14.5V7H17V11A2.5,2.5 0 0,1 14.5,13.5A2.5,2.5 0 0,1 12,11M9.5,4H14.5L15,6H9L9.5,4Z"></path>
+            </svg>
+        </span>
+        Knight Kit
+    </h2>
+    <figure><figure>
+            <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/rjg4kxy6alzhhyg6wzcf.png" alt="Knight Kit Image" data-image="4obiabw6vtfs" width="263" height="235" style="width: 100%; height: auto; display: block;"> </figure>
+        <h2></h2> <ul>
+            <h2><strong>Helmet<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection III</li>
+                    <li>Unbreaking III</li>
+                    <li>Speed +3%</li>
+                    <li>Wolverine Look</li>
+                </ul>
+            </li>
+            <h2><strong>Chestplate<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection III</li>
+                    <li>Unbreaking III</li>
+                </ul>
+            </li>
+            <h2><strong>Leggings<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection III</li>
+                    <li>Unbreaking III</li>
+                </ul>
+            </li>
+            <h2><strong>Boots<br></strong></h2>
+            <li>
+                <ul class="enchantments">
+                    <li>Protection III</li>
+                    <li>Unbreaking III</li>
+                </ul>
+            </li>
+        </ul></figure>
+</section>
