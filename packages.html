@@ -1,105 +1,260 @@
-	<div class="comparison-container">
-		<div class="rank-card knight">
-			<h1>Knight Rank</h1>
-			<div class="main-image-container">
-				<figure><img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/dxzqom2iryce0a22hyux.png" alt="Knight Rank Image" data-image="ydou0qhsn2x0">
-                                <h2></h2>
-				<a href="/category/490494">
-					<button type="button" class="btn btn-primary" style="padding: 10px 20px;">Details</button>
-				</a></figure>
-			</div>
-		</div>
-		<div class="rank-card lord">
-			<h1>Lord Rank</h1>
-			<div class="main-image-container">
-				<figure><img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/mfgwgh6mcigoe42nauua.png" alt="Lord Rank Image" data-image="t89snob6n9kb">                                <h2></h2>
-				<a href="/category/490494">
-					<button type="button" class="btn btn-primary" style="padding: 10px 20px;">Details</button>
-				</a></figure>
-			</div>
-		</div>
-		<div class="rank-card emperor">
-			<h1>Emperor Rank</h1>
-			<div class="main-image-container">
-				<figure><img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/hsh4fnwsgjk4ig0dmbqn.png" alt="Emperor Rank Image" data-image="yfa0ufnhrbw0">                                <h2></h2>
-				<a href="/category/490494">
-					<button type="button" class="btn btn-primary" style="padding: 10px 20px;">Details</button>
-				</a></figure>
-			</div>
-		</div>
-	</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Comparación de Rangos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
 
- <style>
-	body {
-		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		margin: 0;
-		padding: 40px;
-	}
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
 
-	.comparison-container {
-		max-width: 1200px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 20px;
-	}
+        .rank-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease-out;
+        }
 
-	.rank-card {
-		background-color: #ffffff;
-		border-radius: 12px;
-		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-		padding: 25px;
-		text-align: center;
-		transition: transform 0.3s ease-out;
-	}
+        .rank-card:hover {
+            transform: translateY(-5px);
+        }
 
-	.rank-card:hover {
-		transform: translateY(-5px);
-	}
+        .rank-card.knight { border-top: 5px solid #3498db; }
+        .rank-card.lord { border-top: 5px solid #2ecc71; }
+        .rank-card.emperor { border-top: 5px solid #e74c3c; }
 
-	.rank-card.knight { border-top: 5px solid #3498db; }
-	.rank-card.lord { border-top: 5px solid #2ecc71; }
-	.rank-card.emperor { border-top: 5px solid #e74c3c; }
+        .rank-card h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin: 10px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-	.rank-card h1 {
-		color: #2c3e50;
-		font-size: 2em;
-		margin: 10px 0 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-	}
+        .main-image-container {
+            margin-bottom: 20px;
+        }
 
-	.main-image-container {
-		margin-bottom: 20px;
-	}
+        .main-image-container img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
 
-	.main-image-container img {
-		max-width: 200px;
-		height: auto;
-		border-radius: 8px;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-	}
+        .details-button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
 
-	section[data-tag] {
-		margin-bottom: 20px;
-	}
+        .details-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+        }
 
-	section[data-tag] h2 {
-		color: #2c3e50;
-		font-size: 1.5em;
-		border-bottom: 2px solid #3b536b;
-		padding-bottom: 8px;
-		margin: 0 0 15px;
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
 
-	section[data-tag] ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-</style>
+        .modal-content {
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1px;
+            padding-bottom: 1px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #2c3e50;
+        }
+
+        .close-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            border: none;
+            background: #e74c3c;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            background-color: #c0392b;
+            text-decoration: none;
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow: auto;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .rank-card {
+                margin-bottom: 20px;
+            }
+
+            .modal-content {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-header h2 {
+                font-size: 1.5em;
+            }
+
+            .details-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+
+            .close-button {
+                font-size: 20px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison-container">
+        <div class="rank-card knight">
+            <h1>Knight Rank</h1>
+            <div class="main-image-container">
+                <figure>
+                    <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/dxzqom2iryce0a22hyux.png" alt="Knight Rank Image" data-image="ydou0qhsn2x0">
+                    <h2></h2>
+                    <button class="details-button" data-file="knight.html">Details</button>
+                </figure>
+            </div>
+        </div>
+        <div class="rank-card lord">
+            <h1>Lord Rank</h1>
+            <div class="main-image-container">
+                <figure>
+                    <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/mfgwgh6mcigoe42nauua.png" alt="Lord Rank Image" data-image="t89snob6n9kb">
+                    <h2></h2>
+                    <button class="details-button" data-file="lord.html">Details</button>
+                </figure>
+            </div>
+        </div>
+        <div class="rank-card emperor">
+            <h1>Emperor Rank</h1>
+            <div class="main-image-container">
+                <figure>
+                    <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/hsh4fnwsgjk4ig0dmbqn.png" alt="Emperor Rank Image" data-image="yfa0ufnhrbw0">
+                    <h2></h2>
+                    <button class="details-button" data-file="emperor.html">Details</button>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="closeModal" class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalIframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("detailsModal");
+        const modalIframe = document.getElementById("modalIframe");
+        const detailsButtons = document.querySelectorAll(".details-button");
+        const closeModalButton = document.getElementById("closeModal");
+
+        detailsButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const file = this.getAttribute("data-file");
+                modalIframe.src = file;
+                modal.style.display = "block";
+            });
+        });
+
+        closeModalButton.addEventListener("click", function() {
+            modal.style.display = "none";
+            modalIframe.src = "";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                modalIframe.src = "";
+            }
+        });
+    </script>
+</body>
+</html>
