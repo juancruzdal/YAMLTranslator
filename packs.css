@@ -1,0 +1,452 @@
+    /* General Page Enhancements */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f6f8;
+        color: #333;
+    }
+
+    .content-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2.8em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+        margin-top: 20px;
+        margin-bottom: 50px;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 svg {
+        fill: #2c3e50;
+        margin: 0 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    section[data-tag] {
+        margin-bottom: 40px;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    section[data-tag] h2 {
+        color: #2c3e50;
+        font-size: 2em;
+        border-bottom: 2px solid #3b536b;
+        padding-bottom: 12px;
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+    }
+
+    section[data-tag] ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    section[data-tag] li:not(ul.enchantments li) {
+        background-color: #ffffff;
+        border: 1px solid #dfe6e9;
+        border-left: 5px solid #2c3e50;
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: transform 0.25s ease-out, background-color 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+        flex-direction: column;
+        text-align: left;
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover {
+        background-color: #3b536b;
+        color: #ffffff;
+        border-color: #3b536b;
+        border-left-color: #e74c3c;
+        transform: translateY(-3px) scale(1.015);
+        box-shadow: 0 7px 14px rgba(44, 62, 80, 0.25);
+    }
+
+    section[data-tag] li strong {
+        color: #2c3e50;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    section[data-tag] li .perk-description {
+        color: #555;
+        margin-left: 0;
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover strong,
+    section[data-tag] li:not(ul.enchantments li):hover .perk-description,
+    section[data-tag] li:not(ul.enchantments li):hover {
+        color: #ffffff;
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover .perk-description {
+        color: #f0f0f0;
+    }
+
+    section[data-tag] .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        margin-right: 12px;
+    }
+
+    section[data-tag] .icon svg {
+        width: 100%;
+        height: 100%;
+        fill: #2c3e50;
+        transition: fill 0.25s ease-out;
+    }
+
+    section[data-tag] li:not(ul.enchantments li):hover .icon svg {
+        fill: #ffffff;
+    }
+
+    section[data-tag] h2 .icon svg {
+        fill: #2c3e50;
+    }
+
+    section[data-tag="commands"] ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    section[data-tag="commands"] li {
+        text-align: center;
+        padding: 25px 20px;
+        width: 90%;
+        box-sizing: border-box;
+    }
+
+    .main-image-container {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .main-image-container figure {
+        max-width: 275px;
+        display: inline-block;
+        background-color: #fff;
+        padding: 12px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .main-image-container figure img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    section[data-tag="kit"] > figure {
+        padding: 25px;
+        background-color: #fdfdfd;
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+    section[data-tag="kit"] > figure > figure {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    section[data-tag="kit"] > figure > figure > img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
+
+    section[data-tag="kit"] > figure > h2.kit-subtitle {
+        font-size: 1em;
+        color: #888;
+        text-align: center;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        font-weight: normal;
+    }
+
+    section[data-tag="kit"] > figure > h2.kit-subtitle:empty {
+        display: none;
+    }
+
+    section[data-tag="kit"] > figure > ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    section[data-tag="kit"] > figure > ul > h2 {
+        color: #16a085;
+        font-size: 1.5em;
+        border-bottom: 1px dashed #bdc3c7;
+        padding-bottom: 8px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    section[data-tag="kit"] > figure > ul > h2:first-child {
+        margin-top: 0;
+    }
+
+    section[data-tag="kit"] > figure > ul > h2 strong {
+        font-weight: inherit;
+    }
+
+    section[data-tag="kit"] > figure > ul > li {
+        background-color: #ffffff;
+        border: 1px solid #e7e7e7;
+        border-left: 5px solid #3498db;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 18px;
+        font-size: 1.1em;
+        display: block;
+        transition: transform 0.2s ease-out, background-color 0.2s ease-out, box-shadow 0.2s ease-out, border-left-color 0.2s ease-out;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    section[data-tag="kit"] > figure > ul > li:hover {
+        background-color: #f7f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+        border-left-color: #2ecc71;
+    }
+
+    section[data-tag="kit"] > figure > ul > li ul.enchantments {
+        list-style-type: disc;
+        padding-left: 25px;
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+
+    section[data-tag="kit"] > figure > ul > li ul.enchantments li {
+        background-color: transparent !important;
+        border: none !important;
+        border-left: none !important;
+        padding: 6px 0 !important;
+        margin-bottom: 3px !important;
+        font-size: 1em !important;
+        display: list-item !important;
+        box-shadow: none !important;
+        color: #4a4a4a !important;
+        transition: color 0.2s ease-out;
+    }
+
+    section[data-tag="kit"] > figure > ul > li ul.enchantments li:hover {
+        background-color: transparent !important;
+        transform: none !important;
+        box-shadow: none !important;
+        color: #16a085 !important;
+    }
+
+    @media (min-width: 768px) {
+        section[data-tag="kit"] > figure {
+            grid-template-columns: 40% 55%;
+            grid-template-areas: "image armadura";
+            max-width: 100%;
+        }
+
+        section[data-tag="kit"] > figure > figure {
+            margin-right: 20px;
+            order: 0;
+            grid-area: image;
+        }
+
+        section[data-tag="kit"] > figure > ul {
+            width: 100%;
+            order: 1;
+            grid-area: armadura;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .content-wrapper {
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        h1 svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        section[data-tag] {
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        section[data-tag] h2 {
+            font-size: 1.75em;
+            margin-bottom: 25px;
+        }
+
+        section[data-tag] li:not(ul.enchantments li) {
+            font-size: 1em;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        section[data-tag] .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        section[data-tag="commands"] ul {
+            gap: 15px;
+        }
+
+        section[data-tag="commands"] li {
+            padding: 15px;
+        }
+
+        .main-image-container {
+            margin-bottom: 30px;
+        }
+
+        .main-image-container figure {
+            padding: 10px;
+        }
+
+        section[data-tag="kit"] > figure {
+            padding: 20px;
+        }
+
+        section[data-tag="kit"] > figure > figure {
+            margin-bottom: 20px;
+            padding: 8px;
+        }
+
+        section[data-tag="kit"] > figure > ul > h2 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+        }
+
+        section[data-tag="kit"] > figure > ul > li {
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        section[data-tag="kit"] > figure > ul > li ul.enchantments {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        section[data-tag="kit"] > figure > ul > li ul.enchantments li {
+            font-size: 0.95em !important;
+            padding: 5px 0 !important;
+            margin-bottom: 2px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+        }
+
+        section[data-tag] h2 {
+            font-size: 1.4em;
+        }
+
+        section[data-tag] li:not(ul.enchantments li) {
+            font-size: 0.9em;
+            padding: 12px;
+        }
+
+        section[data-tag] .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        section[data-tag="commands"] li {
+            padding: 12px;
+        }
+
+        .main-image-container figure {
+            padding: 8px;
+        }
+
+        section[data-tag="kit"] > figure {
+            padding: 15px;
+        }
+
+        section[data-tag="kit"] > figure > figure {
+            padding: 6px;
+        }
+
+        section[data-tag="kit"] > figure > ul > h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+        }
+
+        section[data-tag="kit"] > figure > ul > li {
+            padding: 12px;
+            font-size: 0.9em;
+        }
+
+        section[data-tag="kit"] > figure > ul > li ul.enchantments {
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        section[data-tag="kit"] > figure > ul > li ul.enchantments li {
+            font-size: 0.9em !important;
+            padding: 4px 0 !important;
+            margin-bottom: 1px !important;
+        }
+    }
