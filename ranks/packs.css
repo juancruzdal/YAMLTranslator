@@ -2,13 +2,13 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 12px;
     background-color: #f4f6f8;
     color: #333;
 }
 
 .content-wrapper {
-    max-width: 50%;
+    max-width: 80vh;
     margin: 0 auto;
     padding: 10px;
 }
@@ -28,7 +28,7 @@ h1 {
 
 section[data-tag]:not([data-tag="icon"]) {
     margin-bottom: 40px;
-    padding: 25px;
+    padding: 12px;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
