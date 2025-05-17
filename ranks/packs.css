@@ -8,7 +8,7 @@ body {
 }
 
 .content-wrapper {
-    max-width: 530px;
+    max-width: 50%;
     margin: 0 auto;
     padding: 10px;
 }
