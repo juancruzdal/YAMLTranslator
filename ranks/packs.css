@@ -266,6 +266,12 @@ section[data-tag="kit-cont"] > figure > li:hover {
         grid-template-areas: "image armadura";
     }
 
+    .content-wrapper {
+      max-width: 95vh;
+      margin: 0 auto;
+      padding: 2px;
+    }
+
     section[data-tag="kit-cont"] > figure > figure {
         margin-right: 10px;
         order: 0;
@@ -334,6 +340,12 @@ section[data-tag="kit"] > figure {
     section[data-tag]:not([data-tag="icon"]) {
         padding: 20px;
         margin-bottom: 30px;
+    }
+	
+    .content-wrapper {
+      max-width: 95vh;
+      margin: 0 auto;
+      padding: 2px;
     }
 
     section[data-tag]:not([data-tag="icon"]) h2 {
@@ -415,6 +427,12 @@ section[data-tag="kit"] > figure {
 @media (max-width: 480px) {
     body {
         padding: 10px;
+    }
+
+    .content-wrapper {
+      max-width: 95vh;
+      margin: 0 auto;
+      padding: 2px;
     }
 
     h1 {
