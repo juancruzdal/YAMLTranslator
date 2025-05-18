@@ -5,150 +5,375 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Comparación de Rangos</title>
     <style>
+        /* Estilos generales para el cuerpo */
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 40px; /* Padding por defecto */
+            overflow-x: hidden; /* Previene el scroll horizontal */
+            background-color: #f4f7f6; /* Color de fondo suave */
+            line-height: 1.6; /* Mejorar legibilidad */
+            color: #333; /* Color de texto general */
         }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
+
+        /* Contenedor principal de las tarjetas */
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            /* Permite que las columnas se ajusten, con un mínimo de 280px para pantallas muy pequeñas */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; /* Espacio entre tarjetas */
+            padding: 0 10px; /* Añadir un poco de padding horizontal para evitar que las tarjetas toquen los bordes en móviles */
         }
+
+        /* Estilos para cada tarjeta de rango */
         .rank-card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            padding: 25px;
             text-align: center;
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-out;
+            display: flex; /* Usar flexbox para organizar el contenido */
+            flex-direction: column;
+            justify-content: space-between; /* Distribuye el espacio entre los elementos */
+            align-items: center; /* Centra los elementos horizontalmente */
         }
-        .rank-card h2 {
-            margin: 0 0 10px;
+
+        .rank-card:hover {
+            transform: translateY(-5px);
         }
-        .rank-card img {
-            max-width: 100%;
-            height: auto;
+
+        /* Bordes superiores específicos para cada rango */
+        .rank-card.knight { border-top: 5px solid #3498db; }
+        .rank-card.lord { border-top: 5px solid #2ecc71; }
+        .rank-card.emperor { border-top: 5px solid #e74c3c; }
+
+        /* Estilos para el título del rango */
+        .rank-card h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin: 10px 0 20px;
+            word-break: break-word; /* Permite que el texto largo se rompa en pantallas pequeñas */
+            width: 100%; /* Asegura que el título use el ancho disponible */
         }
-        .rank-card button {
-            background-color: #007BFF;
-            color: white;
+
+        /* Contenedor de la imagen principal */
+        .main-image-container {
+            margin-bottom: 20px;
+            width: 100%; /* Asegura que el contenedor de la imagen use el ancho disponible */
+        }
+
+        /* Estilos para la imagen dentro de la tarjeta */
+        .main-image-container img {
+            max-width: 200px; /* Limitar el tamaño máximo de la imagen */
+            height: auto; /* Mantiene la relación de aspecto */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: block; /* Asegura que la imagen se comporte como un bloque para centrarla */
+            margin: 0 auto; /* Centra la imagen */
+        }
+
+        /* Contenedor para los botones */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Apila los botones verticalmente en móviles */
+            gap: 10px; /* Espacio entre botones */
+            width: 100%; /* Asegura que el contenedor de botones use el ancho disponible */
+            margin-top: auto; /* Empuja los botones hacia la parte inferior */
+        }
+
+        /* Estilos base para los botones */
+        .details-button,
+        .buy-button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #fff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+            max-width: 250px; /* Limita el ancho máximo del botón */
+             margin: 0 auto; /* Centra los botones */
+             text-decoration: none; /* Quita el subrayado de los enlaces */
+             display: inline-block; /* Permite aplicar padding y margin */
         }
-        .rank-card button:hover {
+
+        /* Estilos específicos para el botón de detalles */
+        .details-button {
+            background-color: #007bff;
+        }
+
+        .details-button:hover {
             background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
         }
+
+        /* Estilos específicos para el botón de comprar */
+        .buy-button {
+            background-color: #28a745; /* Color verde para comprar */
+        }
+
+        .buy-button:hover {
+            background-color: #218838; /* Verde más oscuro al pasar el ratón */
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Estilos para el modal (ventana emergente) */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Posición fija en la ventana */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
+            overflow: auto; /* Permite scroll si el contenido es grande */
+            background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente oscuro */
+            animation: fadeIn 0.3s ease-out; /* Animación de aparición */
         }
+
+        /* Animación para la aparición del modal */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Contenido del modal */
         .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 90%;
-            max-height: 80%;
-            overflow: auto;
+            background-color: #fff;
+            margin: 0; /* Elimina el margen por defecto */
+            padding: 0;
+            border-radius: 0; /* Bordes rectos para ocupar toda la pantalla en móviles */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%; /* Ocupa todo el ancho */
+            height: 100%; /* Ocupa toda la altura */
+            position: relative; /* Necesario para posicionar el botón de cerrar absolutamente */
+            display: flex;
+            flex-direction: column;
         }
-        .modal-content button {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
+
+        /* Botón de cerrar del modal */
+        .close-button {
+            position: absolute; /* Posición absoluta dentro del modal-content */
+            bottom: 15px; /* Ajustar posición desde arriba */
+            right: 35px; /* Ajustar posición desde la derecha */
+            color: #fff; /* Color blanco para el icono */
+            font-size: 24px; /* Tamaño del icono */
+            font-weight: bold;
             cursor: pointer;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            border: none;
+            background-color: #e74c3c; /* Fondo rojo */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 5px 10px; /* Padding para el botón */
+            z-index: 1001; /* Asegura que esté por encima del iframe */
         }
+
+        .close-button:hover,
+        .close-button:focus {
+            background-color: #c0392b; /* Rojo más oscuro al pasar el ratón/foco */
+            text-decoration: none;
+            outline: none; /* Eliminar el contorno al enfocar */
+        }
+
+        /* Cuerpo del modal donde se carga el iframe */
+        .modal-body {
+            flex: 1; /* Permite que el cuerpo ocupe el espacio restante */
+            overflow: auto; /* Permite scroll dentro del cuerpo si el iframe es más grande */
+            padding-top: 0; /* Asegurar que no haya padding extra en la parte superior */
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Media query para pantallas pequeñas (menos de 768px) */
         @media (max-width: 768px) {
+            body {
+                padding: 20px; /* Reducir padding del body */
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr; /* Apilar las tarjetas en una sola columna */
+                gap: 15px; /* Reducir espacio entre tarjetas */
+            }
+
             .rank-card {
-                flex: 100%;
-                max-width: 100%;
+                padding: 20px; /* Reducir padding de la tarjeta */
+            }
+
+            .rank-card h1 {
+                font-size: 1.8em; /* Reducir tamaño del título */
+            }
+
+            .button-container {
+                 flex-direction: column; /* Asegura que los botones se apilen */
+                 gap: 10px;
+            }
+
+            .details-button,
+            .buy-button {
+                 max-width: none; /* Permitir que los botones ocupen todo el ancho de la tarjeta */
+            }
+
+            .modal-content {
+                border-radius: 0; /* Asegurar bordes rectos en pantallas pequeñas */
+            }
+
+            .close-button {
+                bottom: 12px; /* Ajustar posición del botón cerrar */
+                right: 12px;
+                font-size: 20px; /* Reducir tamaño del botón cerrar */
+                padding: 3px 8px;
+            }
+        }
+
+        /* Media query para pantallas muy pequeñas (menos de 480px) */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px; /* Reducir aún más el padding del body */
+            }
+
+            .comparison-container {
+                gap: 10px; /* Reducir espacio entre tarjetas */
+            }
+
+            .rank-card {
+                padding: 15px; /* Reducir aún más el padding de la tarjeta */
+            }
+
+            .rank-card h1 {
+                font-size: 1.5em; /* Reducir tamaño del título */
+            }
+
+             .main-image-container {
+                margin-bottom: 15px; /* Reducir margen inferior de la imagen */
+            }
+
+            .button-container {
+                 gap: 8px; /* Reducir espacio entre botones */
+            }
+
+            .details-button,
+            .buy-button {
+                padding: 8px 15px; /* Reducir padding de los botones */
+                font-size: 0.9em; /* Reducir tamaño de fuente de los botones */
+            }
+
+            .close-button {
+                 bottom: 12px; /* Ajustar posición del botón cerrar */
+                 right: 12px;
+                 font-size: 18px; /* Reducir tamaño del botón cerrar */
+                 padding: 2px 6px;
             }
         }
     </style>
 </head>
-<body>
-    <div class="comparison-container">
-        <div class="rank-card knight">
-            <h1>Knight Rank</h1>
-            <div class="main-image-container">
-                <figure>
-                    <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/dxzqom2iryce0a22hyux.png" alt="Knight Rank Image" data-image="ydou0qhsn2x0">
-                    <h2></h2>
-                    <button class="details-button" data-file="ranks/knight.html">Details</button>
-                </figure>
+    <body>
+        <div class="comparison-container">
+            <div class="rank-card knight">
+                <h1>Knight Rank</h1>
+                <div class="main-image-container">
+                    <figure>
+                        <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/dxzqom2iryce0a22hyux.png" alt="Knight Rank Image" data-image="ydou0qhsn2x0">
+                    </figure>
+                </div>
+                 <div class="button-container">
+                     <button class="details-button" data-file="ranks/knight.html">Details</button>
+                    <a href="https://www.ejemplo.com/comprar/knight" class="buy-button" target="_blank">Buy Now</a>
+                </div>
             </div>
-        </div>
-        <div class="rank-card lord">
-            <h1>Lord Rank</h1>
-            <div class="main-image-container">
-                <figure>
-                    <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/mfgwgh6mcigoe42nauua.png" alt="Lord Rank Image" data-image="t89snob6n9kb">
-                    <h2></h2>
+            <div class="rank-card lord">
+                <h1>Lord Rank</h1>
+                <div class="main-image-container">
+                    <figure>
+                        <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/mfgwgh6mcigoe42nauua.png" alt="Lord Rank Image" data-image="t89snob6n9kb">
+                    </figure>
+                </div>
+                 <div class="button-container">
                     <button class="details-button" data-file="ranks/lord.html">Details</button>
-                </figure>
+                    <a href="https://www.ejemplo.com/comprar/lord" class="buy-button" target="_blank">Buy Now</a>
+                </div>
             </div>
-        </div>
-        <div class="rank-card emperor">
-            <h1>Emperor Rank</h1>
-            <div class="main-image-container">
-                <figure>
-                    <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/hsh4fnwsgjk4ig0dmbqn.png" alt="Emperor Rank Image" data-image="yfa0ufnhrbw0">
-                    <h2></h2>
+            <div class="rank-card emperor">
+                <h1>Emperor Rank</h1>
+                <div class="main-image-container">
+                    <figure>
+                        <img src="https://cdn.craftingstore.net/rPPmDHlLQ1/c0f524500634f151b9f933ec5ed7112d/hsh4fnwsgjk4ig0dmbqn.png" alt="Emperor Rank Image" data-image="yfa0ufnhrbw0">
+                    </figure>
+                </div>
+                 <div class="button-container">
                     <button class="details-button" data-file="ranks/emperor.html">Details</button>
-                </figure>
+                    <a href="https://www.ejemplo.com/comprar/emperor" class="buy-button" target="_blank">Buy Now</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="detailsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
                 <button id="closeModal" class="close-button">&times;</button>
-            </div>
-            <div class="modal-body">
-                <iframe id="modalIframe" src=""></iframe>
+                <div class="modal-body">
+                    <iframe id="modalIframe" src=""></iframe>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        const modal = document.getElementById("detailsModal");
-        const modalIframe = document.getElementById("modalIframe");
-        const detailsButtons = document.querySelectorAll(".details-button");
-        const closeModalButton = document.getElementById("closeModal");
+        <script>
+            // Script para manejar la apertura y cierre del modal
+            const modal = document.getElementById("detailsModal");
+            const modalIframe = document.getElementById("modalIframe");
+            const detailsButtons = document.querySelectorAll(".details-button");
+            const closeModalButton = document.getElementById("closeModal");
 
-        detailsButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                const file = this.getAttribute("data-file");
-                modalIframe.src = file;
-                modal.style.display = "block";
+            // Abre el modal y carga el contenido del iframe
+            detailsButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const file = this.getAttribute("data-file");
+                    modalIframe.src = file;
+                    modal.style.display = "block";
+                    // Opcional: añadir una clase al body para deshabilitar el scroll de fondo
+                    document.body.style.overflow = 'hidden';
+                });
             });
-        });
 
-        closeModalButton.addEventListener("click", function() {
-            modal.style.display = "none";
-            modalIframe.src = "";
-        });
-
-        window.addEventListener("click", function(event) {
-            if (event.target === modal) {
+            // Cierra el modal y limpia el iframe src
+            closeModalButton.addEventListener("click", function() {
                 modal.style.display = "none";
                 modalIframe.src = "";
-            }
-        });
-    </script>
-</body>
+                 // Opcional: restaurar el scroll del body
+                document.body.style.overflow = '';
+            });
+
+            // Cierra el modal al hacer clic fuera del contenido del modal
+            window.addEventListener("click", function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                    modalIframe.src = "";
+                     // Opcional: restaurar el scroll del body
+                    document.body.style.overflow = '';
+                }
+            });
+
+             // Cierra el modal al presionar la tecla ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    modal.style.display = 'none';
+                    modalIframe.src = "";
+                     // Opcional: restaurar el scroll del body
+                    document.body.style.overflow = '';
+                }
+            });
+        </script>
+    </body>
 </html>
