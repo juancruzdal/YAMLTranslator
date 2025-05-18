@@ -153,7 +153,7 @@ section[data-tag="commands"] li:hover {
 }
 
 /* --- ESTILOS PARA COMANDOS NO DISPONIBLES --- */
-section[data-tag="commands"] li.unavailable-command {
+section[data-tag="commands"] li.u-cmd {
     background-color: #e9ecef !important;
     color: #6c757d !important;
     border-left-color: #adb5bd !important;
@@ -161,15 +161,15 @@ section[data-tag="commands"] li.unavailable-command {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 
-section[data-tag="commands"] li.unavailable-command strong {
+section[data-tag="commands"] li.u-cmd strong {
     color: #6c757d !important;
 }
 
-section[data-tag="commands"] li.unavailable-command .icon svg {
+section[data-tag="commands"] li.u-cmd .icon svg {
     fill: #6c757d !important; /* Icono gris */
 }
 
-section[data-tag="commands"] li.unavailable-command:hover {
+section[data-tag="commands"] li.u-cmd:hover {
     background-color: #dee2e6 !important;
     color: #495057 !important;
     border-left-color: #6c757d !important;
@@ -177,11 +177,11 @@ section[data-tag="commands"] li.unavailable-command:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 
-section[data-tag="commands"] li.unavailable-command:hover strong {
+section[data-tag="commands"] li.u-cmd:hover strong {
     color: #495057;
 }
 
-section[data-tag="commands"] li.unavailable-command:hover .icon svg {
+section[data-tag="commands"] li.u-cmd:hover .icon svg {
     fill: #495057 !important;
 }
 /* --- FIN ESTILOS PARA COMANDOS NO DISPONIBLES --- */
