@@ -15,8 +15,9 @@ body {
 
 h1 {
     color: #2c3e50;
+    margin-block-end:  1px;
     text-align: center;
-    font-size: 2.8em; /* Los iconos en h1 heredarán este tamaño de fuente base */
+    font-size: 1.5em; /* Los iconos en h1 heredarán este tamaño de fuente base */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
     margin-top: 5px;
     margin-bottom: 1px;
@@ -27,7 +28,7 @@ h1 {
 }
 
 section[data-tag]:not([data-tag="icon"]) {
-    margin-bottom: 40px;
+    margin-bottom: 12px;
     padding: 12px;
     background-color: #ffffff;
     border-radius: 12px;
@@ -36,11 +37,11 @@ section[data-tag]:not([data-tag="icon"]) {
 
 section[data-tag]:not([data-tag="icon"]) h2 {
     color: #2c3e50;
-    font-size: 2em; /* Los iconos en h2 heredarán este tamaño de fuente base */
+    font-size: 0.9em; /* Los iconos en h2 heredarán este tamaño de fuente base */
     border-bottom: 2px solid #3b536b;
     padding-bottom: 12px;
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 12px;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     align-items: center;
@@ -57,10 +58,10 @@ section[data-tag]:not([data-tag="icon"]) li:not(ul.enchantments li) {
     border: 1px solid #dfe6e9;
     border-left: 5px solid #2c3e50;
     border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 15px;
-    font-size: 1.1em; /* Los iconos en li heredarán este tamaño de fuente base */
-    display: flex;
+    padding: 5px 5px;
+    margin-bottom: 4px;
+    font-size: 0.6em; /* Los iconos en li heredarán este tamaño de fuente base */
+    display: block;
     align-items: center;
     gap: 15px;
     transition: transform 0.25s ease-out, background-color 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
@@ -68,6 +69,9 @@ section[data-tag]:not([data-tag="icon"]) li:not(ul.enchantments li) {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
     /* flex-direction: column; /* Comentado o eliminado si no es necesario para todos los li */
     text-align: left;
+    max-width: 95%;
+    flex-direction: row;
+    align-content: center;
 }
 
 section[data-tag]:not([data-tag="icon"]) li:not(ul.enchantments li):hover {
@@ -103,9 +107,10 @@ section[data-tag]:not([data-tag="icon"]) li:not(ul.enchantments li):hover .perk-
 
 section[data-tag="commands"] ul {
     display: flex;
-    flex-direction: column;
     align-items: stretch; /* Para que los li ocupen el ancho */
-    gap: 20px;
+    gap: 5px;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 section[data-tag="commands"] li {
@@ -139,12 +144,12 @@ section[data-tag="commands"] li:hover {
 
 .main-image-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
 }
 
 .main-image-container figure {
     max-width: 500px;
-    margin-bottom: 50px;
+    margin-bottom: 18px;
     display: inline-block;
     background-color: #fff;
     padding: 12px;
@@ -267,7 +272,8 @@ section[data-tag="kit-cont"] > figure > li:hover {
     }
 
     .content-wrapper {
-      max-width: 95vh;
+      max-width: 65vh;
+      max-height: 60vh;
       margin: 0 auto;
       padding: 2px;
     }
