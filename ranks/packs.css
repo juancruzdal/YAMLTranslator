@@ -184,6 +184,12 @@ section[data-tag="commands"] li.u-cmd:hover strong {
 section[data-tag="commands"] li.u-cmd:hover .icon svg {
     fill: #495057 !important;
 }
+
+section[data-tag="commands"] li.unavailable-command::after {
+  content: "\274C"; /* Código Unicode para la X roja */
+  color: red;
+  margin-left: 5px; /* Espacio entre el texto y el emoji */
+}
 /* --- FIN ESTILOS PARA COMANDOS NO DISPONIBLES --- */
 
 
