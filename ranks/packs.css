@@ -350,6 +350,22 @@ section[data-tag="kit"] > figure { /* Duplicated rule, can be merged or one remo
   justify-content: center;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #1e2527;
+}
+::-webkit-scrollbar-thumb {
+  background: #3b4a50;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a6b73;
+}
+scrollbar-color: #3b4a50 #1e2527;
+scrollbar-width: thin;
+
 
 /* --- NUEVAS REGLAS PARA LAYOUT DE DOS COLUMNAS --- */
 /* Estilos para las secciones que quieres en dos columnas */
