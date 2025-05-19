@@ -5,224 +5,224 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Comparación de Rangos</title>
     <style>
-		body {
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			margin: 0;
-			padding: 40px; /* Padding por defecto */
-			overflow-x: hidden; /* Previene el scroll horizontal */
-			background-color: #081e2a; /* Color de fondo suave */
-			line-height: 1.6; /* Mejorar legibilidad */
-			color: #333; /* Color de texto general */
-		}
-
-		/* Contenedor principal de las tarjetas */
-		.comparison-container {
-			max-width: 1200px;
-			margin: 0 auto;
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 20px;
-			padding: 0 10px;
-		}
-
-		/* Estilos para cada tarjeta de rango */
-		.rank-card {
-			background-color: #082b40;
-			border-radius: 12px;
-			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-			padding: 25px;
-			text-align: center;
-			transition: transform 0.3s ease-out;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			align-items: center;
-		}
-
-		.rank-card:hover {
-			transform: translateY(-5px);
-		}
-
-		.rank-card.knight { border-top: 5px solid #3498db; }
-		.rank-card.lord { border-top: 5px solid #2ecc71; }
-		.rank-card.emperor { border-top: 5px solid #e74c3c; }
-
-		.rank-card h1 {
-			color: #9acdff;
-			font-size: 2em;
-			margin: 10px 0 20px;
-			word-break: break-word;
-			width: 100%;
-		}
-
-		.main-image-container {
-			margin-bottom: 20px;
-			width: 100%;
-		}
-
-		.main-image-container img {
-			max-width: 200px;
-			height: auto;
-			display: block;
-			margin: 0 auto;
-		}
-
-		/* Contenedor para los botones */
-		.button-container {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			width: 100%; /* Contenedor toma el ancho completo del espacio asignado en la card */
-			margin-top: auto;
-			align-items: center; /* Centra los elementos flex (botones) si son más estrechos que el contenedor */
-		}
-
-		/* Estilos base para los botones */
+	body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		margin: 0;
+		padding: 40px; /* Padding por defecto */
+		overflow-x: hidden; /* Previene el scroll horizontal */
+		background-color: #081e2a; /* Color de fondo suave */
+		line-height: 1.6; /* Mejorar legibilidad */
+		color: #333; /* Color de texto general */
+	}
+	
+	/* Contenedor principal de las tarjetas */
+	.comparison-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 20px;
+		padding: 0 10px;
+	}
+	
+	/* Estilos para cada tarjeta de rango */
+	.rank-card {
+		background-color: #082b40;
+		border-radius: 12px;
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+		padding: 25px;
+		text-align: center;
+		transition: transform 0.3s ease-out;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.rank-card:hover {
+		transform: translateY(-5px);
+	}
+	
+	.rank-card.knight { border-top: 5px solid #3498db; }
+	.rank-card.lord { border-top: 5px solid #2ecc71; }
+	.rank-card.emperor { border-top: 5px solid #e74c3c; }
+	
+	.rank-card h1 {
+		color: #9acdff;
+		font-size: 2em;
+		margin: 10px 0 20px;
+		word-break: break-word;
+		width: 100%;
+	}
+	
+	.main-image-container {
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	
+	.main-image-container img {
+		max-width: 200px;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+	}
+	
+	/* Contenedor para los botones */
+	.button-container {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		width: 100%; /* Contenedor toma el ancho completo del espacio asignado en la card */
+		margin-top: auto;
+		align-items: center; /* Centra los elementos flex (botones) si son más estrechos que el contenedor */
+	}
+	
+	/* Estilos base para los botones */
+	.details-button,
+	.buy-button {
+		padding: 12px 25px;
+		font-size: 1.1em;
+		font-weight: 500;
+		color: #fff;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+		
+		display: block; /* Cambiado a block para un manejo más claro del ancho y margen */
+		width: 100%;    /* Botón intenta ocupar el 100% del .button-container */
+		max-width: 250px; /* Pero no más de 250px en pantallas grandes */
+		margin-left: auto; /* Estas dos líneas aseguran el centrado para display: block */
+		margin-right: auto; /* cuando max-width es menor que 100% de su contenedor block */
+	
+		text-align: center; /* Para centrar el texto dentro del botón */
+		text-decoration: none;
+		box-sizing: border-box; /* Incluye padding y border en el width/height total */
+	}
+	
+	.details-button { background-color: #007bff; }
+	.details-button:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); }
+	.buy-button { background-color: #28a745; }
+	.buy-button:hover { background-color: #218838; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); }
+	
+	::-webkit-scrollbar {
+	  width: 12px;
+	}
+	::-webkit-scrollbar-track {
+	  background: #1e2527;
+	}
+	::-webkit-scrollbar-thumb {
+	  background: #3b4a50;
+	  border-radius: 6px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+	  background: #5a6b73;
+	}
+	scrollbar-color: #3b4a50 #1e2527;
+	scrollbar-width: thin;
+	
+	
+	/* Estilos para el modal (ventana emergente) */
+	.modal {
+	    display: none; /* Oculto por defecto */
+	    position: fixed; /* Posición fija en la ventana */
+	    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    overflow: auto; /* Permite scroll si el contenido es grande */
+	    background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente oscuro */
+	    animation: fadeIn 0.3s ease-out; /* Animación de aparición */
+	}
+	
+	/* Animación para la aparición del modal */
+	@keyframes fadeIn {
+	    from { opacity: 0; }
+	    to { opacity: 1; }
+	}
+	
+	/* Contenido del modal */
+	.modal-content {
+	    background-color: #fff;
+	    margin: 0; /* Elimina el margen por defecto */
+	    padding: 0;
+	    border-radius: 0; /* Bordes rectos para ocupar toda la pantalla en móviles */
+	    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	    width: 100%; /* Ocupa todo el ancho */
+	    height: 100%; /* Ocupa toda la altura */
+	    position: relative; /* Necesario para posicionar el botón de cerrar absolutamente */
+	    display: flex;
+	    flex-direction: column;
+	}
+	
+	/* Botón de cerrar del modal */
+	.close-button {
+	    position: absolute; /* Posición absoluta dentro del modal-content */
+	    bottom: 15px; /* Ajustar posición desde arriba */
+	    right: 35px; /* Ajustar posición desde la derecha */
+	    color: #fff; /* Color blanco para el icono */
+	    font-size: 24px; /* Tamaño del icono */
+	    font-weight: bold;
+	    cursor: pointer;
+	    transition: color 0.2s ease, background-color 0.2s ease;
+	    border: none;
+	    background-color: #e74c3c; /* Fondo rojo */
+	    border-radius: 5px; /* Bordes redondeados */
+	    padding: 5px 10px; /* Padding para el botón */
+	    z-index: 1001; /* Asegura que esté por encima del iframe */
+	}
+	
+	.close-button:hover,
+	.close-button:focus {
+	    background-color: #c0392b; /* Rojo más oscuro al pasar el ratón/foco */
+	    text-decoration: none;
+	    outline: none; /* Eliminar el contorno al enfocar */
+	}
+	
+	/* Cuerpo del modal donde se carga el iframe */
+	.modal-body {
+	    flex: 1; /* Permite que el cuerpo ocupe el espacio restante */
+	    overflow: auto; /* Permite scroll dentro del cuerpo si el iframe es más grande */
+	    padding-top: 0; /* Asegurar que no haya padding extra en la parte superior */
+	}
+	
+	.modal-body iframe {
+	    width: 100%;
+	    height: 100%;
+	    border: none;
+	    display: block;
+	}
+	
+	/* Media query para pantallas pequeñas (menos de 768px) */
+	@media (max-width: 768px) {
+		body { padding: 20px; }
+		.comparison-container { grid-template-columns: 1fr; gap: 15px; }
+		.rank-card { padding: 20px; }
+		.rank-card h1 { font-size: 1.8em; }
+	
 		.details-button,
 		.buy-button {
-			padding: 12px 25px;
-			font-size: 1.1em;
-			font-weight: 500;
-			color: #fff;
-			border: none;
-			border-radius: 8px;
-			cursor: pointer;
-			transition: background-color 0.3s ease, transform 0.2s ease;
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-			
-			display: block; /* Cambiado a block para un manejo más claro del ancho y margen */
-			width: 100%;    /* Botón intenta ocupar el 100% del .button-container */
-			max-width: 250px; /* Pero no más de 250px en pantallas grandes */
-			margin-left: auto; /* Estas dos líneas aseguran el centrado para display: block */
-			margin-right: auto; /* cuando max-width es menor que 100% de su contenedor block */
-
-			text-align: center; /* Para centrar el texto dentro del botón */
-			text-decoration: none;
-			box-sizing: border-box; /* Incluye padding y border en el width/height total */
+			 max-width: none;
 		}
-
-		.details-button { background-color: #007bff; }
-		.details-button:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); }
-		.buy-button { background-color: #28a745; }
-		.buy-button:hover { background-color: #218838; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); }
-	    
-	    	::-webkit-scrollbar {
-		  width: 12px;
+	}
+	
+	/* Media query para pantallas muy pequeñas (menos de 480px) */
+	@media (max-width: 480px) {
+		body { padding: 10px; }
+		.comparison-container { gap: 10px; }
+		.rank-card { padding: 15px; }
+		.rank-card h1 { font-size: 1.5em; }
+		.main-image-container { margin-bottom: 15px; }
+		.button-container { gap: 8px; }
+		.details-button,
+		.buy-button {
+			padding: 8px 15px;
+			font-size: 0.9em;
 		}
-		::-webkit-scrollbar-track {
-		  background: #1e2527;
-		}
-		::-webkit-scrollbar-thumb {
-		  background: #3b4a50;
-		  border-radius: 6px;
-		}
-		::-webkit-scrollbar-thumb:hover {
-		  background: #5a6b73;
-		}
-		scrollbar-color: #3b4a50 #1e2527;
-		scrollbar-width: thin;
-
-
-        /* Estilos para el modal (ventana emergente) */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed; /* Posición fija en la ventana */
-            z-index: 1000; /* Asegura que esté por encima de otros elementos */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* Permite scroll si el contenido es grande */
-            background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente oscuro */
-            animation: fadeIn 0.3s ease-out; /* Animación de aparición */
-        }
-
-        /* Animación para la aparición del modal */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Contenido del modal */
-        .modal-content {
-            background-color: #fff;
-            margin: 0; /* Elimina el margen por defecto */
-            padding: 0;
-            border-radius: 0; /* Bordes rectos para ocupar toda la pantalla en móviles */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%; /* Ocupa todo el ancho */
-            height: 100%; /* Ocupa toda la altura */
-            position: relative; /* Necesario para posicionar el botón de cerrar absolutamente */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Botón de cerrar del modal */
-        .close-button {
-            position: absolute; /* Posición absoluta dentro del modal-content */
-            bottom: 15px; /* Ajustar posición desde arriba */
-            right: 35px; /* Ajustar posición desde la derecha */
-            color: #fff; /* Color blanco para el icono */
-            font-size: 24px; /* Tamaño del icono */
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.2s ease, background-color 0.2s ease;
-            border: none;
-            background-color: #e74c3c; /* Fondo rojo */
-            border-radius: 5px; /* Bordes redondeados */
-            padding: 5px 10px; /* Padding para el botón */
-            z-index: 1001; /* Asegura que esté por encima del iframe */
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            background-color: #c0392b; /* Rojo más oscuro al pasar el ratón/foco */
-            text-decoration: none;
-            outline: none; /* Eliminar el contorno al enfocar */
-        }
-
-        /* Cuerpo del modal donde se carga el iframe */
-        .modal-body {
-            flex: 1; /* Permite que el cuerpo ocupe el espacio restante */
-            overflow: auto; /* Permite scroll dentro del cuerpo si el iframe es más grande */
-            padding-top: 0; /* Asegurar que no haya padding extra en la parte superior */
-        }
-
-        .modal-body iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        /* Media query para pantallas pequeñas (menos de 768px) */
-		@media (max-width: 768px) {
-			body { padding: 20px; }
-			.comparison-container { grid-template-columns: 1fr; gap: 15px; }
-			.rank-card { padding: 20px; }
-			.rank-card h1 { font-size: 1.8em; }
-
-			.details-button,
-			.buy-button {
-				 max-width: none;
-			}
-		}
-
-        /* Media query para pantallas muy pequeñas (menos de 480px) */
-		@media (max-width: 480px) {
-			body { padding: 10px; }
-			.comparison-container { gap: 10px; }
-			.rank-card { padding: 15px; }
-			.rank-card h1 { font-size: 1.5em; }
-			.main-image-container { margin-bottom: 15px; }
-			.button-container { gap: 8px; }
-			.details-button,
-			.buy-button {
-				padding: 8px 15px;
-				font-size: 0.9em;
-			}
-		}
-    </style>
+	}
+	</style>
 </head>
     <body>
         <div class="comparison-container">
