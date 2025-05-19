@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Comparación de Rangos</title>
     <style>
 	body {
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		margin: 0;
 		padding: 40px; /* Padding por defecto */
+		overflow-y: auto; /* Previene el scroll horizontal */
 		overflow-x: hidden; /* Previene el scroll horizontal */
 		background-color: #081e2a; /* Color de fondo suave */
 		line-height: 1.6; /* Mejorar legibilidad */
 		color: #333; /* Color de texto general */
+		scrollbar-color: #3b4a50 #1e2527;
+		scrollbar-width: thin;
 	}
 	
 	/* Contenedor principal de las tarjetas */
@@ -119,8 +121,6 @@
 	::-webkit-scrollbar-thumb:hover {
 	  background: #5a6b73;
 	}
-	scrollbar-color: #3b4a50 #1e2527;
-	scrollbar-width: thin;
 	
 	
 	/* Estilos para el modal (ventana emergente) */
