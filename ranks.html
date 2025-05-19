@@ -5,125 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Comparación de Rangos</title>
     <style>
-        /* Estilos generales para el cuerpo */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 40px; /* Padding por defecto */
-            overflow-x: hidden; /* Previene el scroll horizontal */
-            background-color: #f4f7f6; /* Color de fondo suave */
-            line-height: 1.6; /* Mejorar legibilidad */
-            color: #333; /* Color de texto general */
-        }
+		/* Estilos generales para el cuerpo */
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 0;
+			padding: 40px; /* Padding por defecto */
+			overflow-x: hidden; /* Previene el scroll horizontal */
+			background-color: #081e2a; /* Color de fondo suave */
+			line-height: 1.6; /* Mejorar legibilidad */
+			color: #333; /* Color de texto general */
+		}
 
-        /* Contenedor principal de las tarjetas */
-        .comparison-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            /* Permite que las columnas se ajusten, con un mínimo de 280px para pantallas muy pequeñas */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; /* Espacio entre tarjetas */
-            padding: 0 10px; /* Añadir un poco de padding horizontal para evitar que las tarjetas toquen los bordes en móviles */
-        }
+		/* Contenedor principal de las tarjetas */
+		.comparison-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 20px;
+			padding: 0 10px;
+		}
 
-        /* Estilos para cada tarjeta de rango */
-        .rank-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s ease-out;
-            display: flex; /* Usar flexbox para organizar el contenido */
-            flex-direction: column;
-            justify-content: space-between; /* Distribuye el espacio entre los elementos */
-            align-items: center; /* Centra los elementos horizontalmente */
-        }
+		/* Estilos para cada tarjeta de rango */
+		.rank-card {
+			background-color: #082b40;
+			border-radius: 12px;
+			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+			padding: 25px;
+			text-align: center;
+			transition: transform 0.3s ease-out;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+		}
 
-        .rank-card:hover {
-            transform: translateY(-5px);
-        }
+		.rank-card:hover {
+			transform: translateY(-5px);
+		}
 
-        /* Bordes superiores específicos para cada rango */
-        .rank-card.knight { border-top: 5px solid #3498db; }
-        .rank-card.lord { border-top: 5px solid #2ecc71; }
-        .rank-card.emperor { border-top: 5px solid #e74c3c; }
+		.rank-card.knight { border-top: 5px solid #3498db; }
+		.rank-card.lord { border-top: 5px solid #2ecc71; }
+		.rank-card.emperor { border-top: 5px solid #e74c3c; }
 
-        /* Estilos para el título del rango */
-        .rank-card h1 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin: 10px 0 20px;
-            word-break: break-word; /* Permite que el texto largo se rompa en pantallas pequeñas */
-            width: 100%; /* Asegura que el título use el ancho disponible */
-        }
+		.rank-card h1 {
+			color: #9acdff;
+			font-size: 2em;
+			margin: 10px 0 20px;
+			word-break: break-word;
+			width: 100%;
+		}
 
-        /* Contenedor de la imagen principal */
-        .main-image-container {
-            margin-bottom: 20px;
-            width: 100%; /* Asegura que el contenedor de la imagen use el ancho disponible */
-        }
+		.main-image-container {
+			margin-bottom: 20px;
+			width: 100%;
+		}
 
-        /* Estilos para la imagen dentro de la tarjeta */
-        .main-image-container img {
-            max-width: 200px; /* Limitar el tamaño máximo de la imagen */
-            height: auto; /* Mantiene la relación de aspecto */
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            display: block; /* Asegura que la imagen se comporte como un bloque para centrarla */
-            margin: 0 auto; /* Centra la imagen */
-        }
+		.main-image-container img {
+			max-width: 200px;
+			height: auto;
+			display: block;
+			margin: 0 auto;
+		}
 
-        /* Contenedor para los botones */
-        .button-container {
-            display: flex;
-            flex-direction: column; /* Apila los botones verticalmente en móviles */
-            gap: 10px; /* Espacio entre botones */
-            width: 100%; /* Asegura que el contenedor de botones use el ancho disponible */
-            margin-top: auto; /* Empuja los botones hacia la parte inferior */
-        }
+		/* Contenedor para los botones */
+		.button-container {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			width: 100%; /* Contenedor toma el ancho completo del espacio asignado en la card */
+			margin-top: auto;
+			align-items: center; /* Centra los elementos flex (botones) si son más estrechos que el contenedor */
+		}
 
-        /* Estilos base para los botones */
-        .details-button,
-        .buy-button {
-            padding: 12px 25px;
-            font-size: 1.1em;
-            font-weight: 500;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
-            max-width: 250px; /* Limita el ancho máximo del botón */
-             margin: 0 auto; /* Centra los botones */
-             text-decoration: none; /* Quita el subrayado de los enlaces */
-             display: inline-block; /* Permite aplicar padding y margin */
-        }
+		/* Estilos base para los botones */
+		.details-button,
+		.buy-button {
+			padding: 12px 25px;
+			font-size: 1.1em;
+			font-weight: 500;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+			
+			display: block; /* Cambiado a block para un manejo más claro del ancho y margen */
+			width: 100%;    /* Botón intenta ocupar el 100% del .button-container */
+			max-width: 250px; /* Pero no más de 250px en pantallas grandes */
+			margin-left: auto; /* Estas dos líneas aseguran el centrado para display: block */
+			margin-right: auto; /* cuando max-width es menor que 100% de su contenedor block */
 
-        /* Estilos específicos para el botón de detalles */
-        .details-button {
-            background-color: #007bff;
-        }
+			text-align: center; /* Para centrar el texto dentro del botón */
+			text-decoration: none;
+			box-sizing: border-box; /* Incluye padding y border en el width/height total */
+		}
 
-        .details-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Estilos específicos para el botón de comprar */
-        .buy-button {
-            background-color: #28a745; /* Color verde para comprar */
-        }
-
-        .buy-button:hover {
-            background-color: #218838; /* Verde más oscuro al pasar el ratón */
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
-        }
+		.details-button { background-color: #007bff; }
+		.details-button:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); }
+		.buy-button { background-color: #28a745; }
+		.buy-button:hover { background-color: #218838; transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2); }
 
 
         /* Estilos para el modal (ventana emergente) */
@@ -199,85 +181,32 @@
         }
 
         /* Media query para pantallas pequeñas (menos de 768px) */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px; /* Reducir padding del body */
-            }
+		@media (max-width: 768px) {
+			body { padding: 20px; }
+			.comparison-container { grid-template-columns: 1fr; gap: 15px; }
+			.rank-card { padding: 20px; }
+			.rank-card h1 { font-size: 1.8em; }
 
-            .comparison-container {
-                grid-template-columns: 1fr; /* Apilar las tarjetas en una sola columna */
-                gap: 15px; /* Reducir espacio entre tarjetas */
-            }
-
-            .rank-card {
-                padding: 20px; /* Reducir padding de la tarjeta */
-            }
-
-            .rank-card h1 {
-                font-size: 1.8em; /* Reducir tamaño del título */
-            }
-
-            .button-container {
-                 flex-direction: column; /* Asegura que los botones se apilen */
-                 gap: 10px;
-            }
-
-            .details-button,
-            .buy-button {
-                 max-width: none; /* Permitir que los botones ocupen todo el ancho de la tarjeta */
-            }
-
-            .modal-content {
-                border-radius: 0; /* Asegurar bordes rectos en pantallas pequeñas */
-            }
-
-            .close-button {
-                bottom: 12px; /* Ajustar posición del botón cerrar */
-                right: 12px;
-                font-size: 20px; /* Reducir tamaño del botón cerrar */
-                padding: 3px 8px;
-            }
-        }
+			.details-button,
+			.buy-button {
+				 max-width: none;
+			}
+		}
 
         /* Media query para pantallas muy pequeñas (menos de 480px) */
-        @media (max-width: 480px) {
-            body {
-                padding: 10px; /* Reducir aún más el padding del body */
-            }
-
-            .comparison-container {
-                gap: 10px; /* Reducir espacio entre tarjetas */
-            }
-
-            .rank-card {
-                padding: 15px; /* Reducir aún más el padding de la tarjeta */
-            }
-
-            .rank-card h1 {
-                font-size: 1.5em; /* Reducir tamaño del título */
-            }
-
-             .main-image-container {
-                margin-bottom: 15px; /* Reducir margen inferior de la imagen */
-            }
-
-            .button-container {
-                 gap: 8px; /* Reducir espacio entre botones */
-            }
-
-            .details-button,
-            .buy-button {
-                padding: 8px 15px; /* Reducir padding de los botones */
-                font-size: 0.9em; /* Reducir tamaño de fuente de los botones */
-            }
-
-            .close-button {
-                 bottom: 12px; /* Ajustar posición del botón cerrar */
-                 right: 12px;
-                 font-size: 18px; /* Reducir tamaño del botón cerrar */
-                 padding: 2px 6px;
-            }
-        }
+		@media (max-width: 480px) {
+			body { padding: 10px; }
+			.comparison-container { gap: 10px; }
+			.rank-card { padding: 15px; }
+			.rank-card h1 { font-size: 1.5em; }
+			.main-image-container { margin-bottom: 15px; }
+			.button-container { gap: 8px; }
+			.details-button,
+			.buy-button {
+				padding: 8px 15px;
+				font-size: 0.9em;
+			}
+		}
     </style>
 </head>
     <body>
